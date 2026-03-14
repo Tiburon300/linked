@@ -2,143 +2,102 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Linkeado3.0</title>
-  <link rel="stylesheet" href="visual.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Clone - SENA Project</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="visual.css">
 </head>
 <body>
 
-<header class="header">
-  <div class="header-left">
-    <i class="fab fa-linkedin logo"></i>
-    <input type="text" placeholder="Buscar">
-  </div>
-
-  <nav class="nav">
-    <div><i class="fas fa-home"></i><span>Home</span></div>
-    <div><i class="fas fa-user-friends"></i><span>My Network</span></div>
-    <div><i class="fas fa-briefcase"></i><span>Jobs</span></div>
-    <div><i class="fas fa-comment"></i><span>Messaging</span></div>
-    <div><i class="fas fa-bell"></i><span>Notifications</span></div>
-  </nav>
-</header>
-
-<main class="container">
-
-  <aside class="left">
-
-    
-
-
-    <div class="card profile">
-      <div class="cover"></div>
-      <div class="perfil-circular">
-  <img src="carota.jpeg" alt="Foto de perfil">
-</div>
-      <h3>Daniel Emilio</h3>
-      <p>Futuro desarrollador</p>
-      <small>Ibagué, Tolima</small>
-    </div>
-
-    <div class="card left-menu">
-      <p><strong>Connections</strong> <span>0</span></p>
-      <p>Saved items</p>
-      <p>Groups</p>
-      <p>Newsletters</p>
-      <p>Events</p>
-    </div>
-
-  </aside>
-
-  <section class="feed">
-
-    <div class="card post-box">
-      <div class="post-input">
-        <div class="mini-avatar"></div>
-        <input type="text" placeholder="Start a post">
-      </div>
-
-      <div class="actions">
-        <span><i class="fas fa-video"></i> Video</span>
-        <span><i class="fas fa-image"></i> Photo</span>
-        <span><i class="fas fa-newspaper"></i> Write article</span>
-      </div>
-    </div>
-
-    <div class="card post">
-
-      <div class="post-header">
-        <div class="mini-avatar"></div>
-        <div>
-          <strong>Luis Alberto Vargas</strong>
-          <p class="gray">Supervisor General de Materiales</p>
-          <p class="gray">3d</p>
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <i class="fab fa-linkedin logo-icon"></i>
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Buscar">
         </div>
       </div>
 
-      <p class="post-text">
-        A veces en las operaciones (y en la vida) estamos tan enfocados en “hacer algo”
-        que olvidamos preguntarnos si realmente está resolviendo el problema.
-      </p>
-
-      <img src="https://picsum.photos/500/700">
-
-      <div class="post-stats">
-        <span>👍 211</span>
-        <span>💬 20</span>
-      </div>
-
+      <nav class="main-nav">
+        <div class="nav-item active"><i class="fas fa-home"></i><span>Inicio</span></div>
+        <div class="nav-item"><i class="fas fa-user-friends"></i><span>Mi Red</span></div>
+        <div class="nav-item"><i class="fas fa-briefcase"></i><span>Empleos</span></div>
+        <div class="nav-item"><i class="fas fa-comment-dots"></i><span>Mensajes</span></div>
+        <div class="nav-item"><i class="fas fa-bell"></i><span>Notificaciones</span></div>
+        <div class="nav-item user-nav">
+          <div class="nav-avatar-mini"></div>
+          <span>Yo <i class="fas fa-caret-down"></i></span>
+        </div>
+      </nav>
     </div>
+  </header>
 
-  </section>
+  <main class="grid-container">
 
-  <aside class="right">
-
-    <div class="card puzzles">
-      <h4>Today's puzzles</h4>
-      <div class="puzzle-box">
-        <div class="puzzle-img"></div>
-        <div>
-          <strong>Zip - a quick brain teaser</strong>
-          <p>Solve in 60s or less!</p>
+    <aside class="sidebar-profile">
+      <div class="card profile-card">
+        <div class="banner"></div>
+        <div class="profile-image">
+          <img src="carota.jpeg" alt="Avatar">
+        </div>
+        <div class="profile-info">
+          <h3>Daniel Emilio</h3>
+          <p>Estudiante en SENA | Futuro Desarrollador</p>
+        </div>
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span>Contactos</span>
+            <span class="stat-number">0</span>
+          </div>
+          <div class="stat-item">
+            <span>Accede a herramientas exclusivas</span>
+            <span class="stat-link">Prueba Premium</span>
+          </div>
         </div>
       </div>
-    </div>
+    </aside>
 
-    <div class="card right-card">
-      <h4>Add to your feed</h4>
-
-      <div class="follow">
-        <div class="mini-avatar"></div>
-        <div>
-          <strong>DIAN</strong>
-          <p>Government</p>
+    <section class="main-feed">
+      <div class="card create-post">
+        <div class="input-row">
+          <div class="mini-avatar"></div>
+          <button class="post-button">Escribir publicación</button>
         </div>
-        <button>+ Follow</button>
+        <div class="post-actions">
+          <span><i class="fas fa-image" style="color: #70b5f9;"></i> Contenido multimedia</span>
+          <span><i class="fas fa-calendar-alt" style="color: #c37d16;"></i> Evento</span>
+          <span><i class="fas fa-newspaper" style="color: #e06847;"></i> Escribir artículo</span>
+        </div>
       </div>
 
-      <div class="follow">
-        <div class="mini-avatar"></div>
-        <div>
-          <strong>CTCP</strong>
-          <p>Organismo técnico</p>
+      <div class="card feed-post">
+        <div class="post-header">
+          <div class="mini-avatar"></div>
+          <div class="post-author">
+            <strong>Luis Alberto Vargas</strong>
+            <span>Supervisor General • 3 d</span>
+          </div>
         </div>
-        <button>+ Follow</button>
-      </div>
-
-      <div class="follow">
-        <div class="mini-avatar"></div>
-        <div>
-          <strong>Juan Pablo</strong>
-          <p>Educador financiero</p>
+        <div class="post-body">
+          <p>A veces en las operaciones estamos tan enfocados en “hacer algo” que olvidamos preguntarnos si realmente está resolviendo el problema.</p>
+          <img src="https://picsum.photos/600/400" alt="Post Image">
         </div>
-        <button>+ Follow</button>
       </div>
-    </div>
+    </section>
 
-  </aside>
+    <aside class="sidebar-news">
+      <div class="card news-card">
+        <h4>LinkedIn Noticias</h4>
+        <ul>
+          <li><strong>¿Qué es el Triple Bottom Line?</strong> <span>Hace 2 h • 1,240 lectores</span></li>
+          <li><strong>Tendencias en HTML5</strong> <span>Hace 5 h • 850 lectores</span></li>
+          <li><strong>SENA: Innovación técnica</strong> <span>Hace 1 d • 2,100 lectores</span></li>
+        </ul>
+      </div>
+    </aside>
 
-</main>
+  </main>
 
 </body>
 </html>
