@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LinkedIn Clone - SENA Project</title>
+  <title>LinkedIn Clone - Proyecto SENA</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="visual.css">
 </head>
 <body>
 
-  <header class="main-header">
+  
+<header class="main-header">
     <div class="header-container">
       <div class="header-left">
         <i class="fab fa-linkedin logo-icon"></i>
@@ -20,84 +21,263 @@
       </div>
 
       <nav class="main-nav">
-        <div class="nav-item active"><i class="fas fa-home"></i><span>Inicio</span></div>
-        <div class="nav-item"><i class="fas fa-user-friends"></i><span>Mi Red</span></div>
-        <div class="nav-item"><i class="fas fa-briefcase"></i><span>Empleos</span></div>
-        <div class="nav-item"><i class="fas fa-comment-dots"></i><span>Mensajes</span></div>
-        <div class="nav-item"><i class="fas fa-bell"></i><span>Notificaciones</span></div>
+        <div class="nav-item active"><i class="fas fa-home"></i><span class="nav-text">Inicio</span></div>
+        <div class="nav-item"><i class="fas fa-user-friends"></i><span class="nav-text">Mi Red</span></div>
+        <div class="nav-item">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Empleos</span>
+        </div>
+        <div class="nav-item">
+          <div class="notification-badge">2</div>
+          <i class="fas fa-comment-dots"></i>
+          <span class="nav-text">Mensajes</span>
+        </div>
+        <div class="nav-item">
+          <div class="notification-badge">23</div>
+          <i class="fas fa-bell"></i>
+          <span class="nav-text">Notificaciones</span>
+        </div>
         <div class="nav-item user-nav">
-          <div class="nav-avatar-mini"></div>
-          <span>Yo <i class="fas fa-caret-down"></i></span>
+          <img src="carota.jpeg" alt="Yo" class="nav-avatar-mini">
+          <span class="nav-text">Yo <i class="fas fa-caret-down"></i></span>
         </div>
       </nav>
+
+      <div class="header-right">
+        <a href="#" class="premium-link">Try Premium for COP 0</a>
+        <div class="nav-item for-business">
+          <i class="fas fa-th"></i>
+          <span class="nav-text">For Business <i class="fas fa-caret-down"></i></span>
+        </div>
+      </div>
     </div>
   </header>
 
-  <main class="grid-container">
+  
+<main class="grid-container">
 
-    <aside class="sidebar-profile">
-      <div class="card profile-card">
+    
+<aside class="sidebar-profile">
+      
+      <div class="card profile-card-top">
         <div class="banner"></div>
         <div class="profile-image">
           <img src="carota.jpeg" alt="Avatar">
+          <div class="add-icon"><i class="fas fa-plus"></i></div>
         </div>
         <div class="profile-info">
-          <h3>Daniel Emilio</h3>
-          <p>Estudiante en SENA | Futuro Desarrollador</p>
+          <h3>Daniel Emilio Ram...</h3>
+          <p>Futuro desarrollador de software</p>
+          <p class="location-text">Ibagué, Tolima</p>
         </div>
-        <div class="profile-stats">
-          <div class="stat-item">
-            <span>Contactos</span>
-            <span class="stat-number">0</span>
-          </div>
-          <div class="stat-item">
-            <span>Accede a herramientas exclusivas</span>
-            <span class="stat-link">Prueba Premium</span>
-          </div>
+        <div class="felo-section">
+          <img src="https://picsum.photos/30/30" alt="Felo Logo" class="felo-logo">
+          <span class="felo-text">Felo</span>
         </div>
+      </div>
+
+      
+      <div class="card profile-card-premium">
+        <div class="stat-item premium-ad">
+          <span class="text-muted">Achieve your career goals</span>
+          <span class="stat-link"><i class="fas fa-square" style="color: #e7a33e;"></i> Try Premium for COP 0</span>
+        </div>
+      </div>
+
+      
+      <div class="card profile-card-connections">
+        <div class="stat-item connections">
+          <div class="conn-text">
+            <span class="text-bold">Connections</span>
+            <span class="text-muted">Grow your network</span>
+          </div>
+          <span class="stat-number">0</span>
+        </div>
+      </div>
+
+      
+      <div class="card profile-card-links">
+        <div class="link-item"><i class="fas fa-bookmark"></i> Saved items</div>
+        <div class="link-item"><i class="fas fa-users"></i> Groups</div>
+        <div class="link-item"><i class="fas fa-newspaper"></i> Newsletters</div>
+        <div class="link-item"><i class="fas fa-calendar-alt"></i> Events</div>
       </div>
     </aside>
 
-    <section class="main-feed">
-      <div class="card create-post">
-        <div class="input-row">
-          <div class="mini-avatar"></div>
-          <button class="post-button">Escribir publicación</button>
+    
+<section class="main-feed">
+      
+      
+<div class="card suggested-card">
+        <button class="close-btn"><i class="fas fa-times"></i></button>
+        <div class="suggested-header">
+          <img src="https://picsum.photos/50/50" alt="Author" class="mini-avatar">
+          <div class="post-author">
+            <strong>David Zabala Alaba <i class="fas fa-check-circle text-muted"></i></strong>
+            <span class="text-muted">Exchange student in Msc Marketing at EDHEC Business...</span>
+            <span class="text-muted">6 d • <i class="fas fa-globe-americas"></i></span>
+          </div>
         </div>
-        <div class="post-actions">
-          <span><i class="fas fa-image" style="color: #70b5f9;"></i> Contenido multimedia</span>
-          <span><i class="fas fa-calendar-alt" style="color: #c37d16;"></i> Evento</span>
-          <span><i class="fas fa-newspaper" style="color: #e06847;"></i> Escribir artículo</span>
+        <div class="hiring-content">
+          <div class="hiring-circle">#HIRING</div>
+          <h2>Hi Daniel Emilio, are you hiring?</h2>
+          <p>Those hiring with LinkedIn are 24% less likely to reopen a role within 12 months</p>
+          <div class="hiring-buttons">
+            <button class="btn-primary">Yes, I'm hiring</button>
+            <button class="btn-secondary">No, not right now</button>
+          </div>
         </div>
       </div>
 
-      <div class="card feed-post">
+      
+<div class="card create-post">
+        <div class="input-row">
+          <img src="carota.jpeg" alt="Avatar" class="mini-avatar">
+          <button class="post-button">Create a post</button>
+        </div>
+        <div class="post-actions">
+          <span><i class="fas fa-video" style="color: #5f9b41;"></i> Video</span>
+          <span><i class="fas fa-image" style="color: #70b5f9;"></i> Photo</span>
+          <span><i class="fas fa-newspaper" style="color: #e16745;"></i> Write article</span>
+        </div>
+      </div>
+
+      <div class="feed-sort">
+        <hr>
+        <span>Sort by: <strong>Top <i class="fas fa-caret-down"></i></strong></span>
+      </div>
+
+      
+<div class="card feed-post Suggested-post">
         <div class="post-header">
-          <div class="mini-avatar"></div>
-          <div class="post-author">
-            <strong>Luis Alberto Vargas</strong>
-            <span>Supervisor General • 3 d</span>
+          <div class="post-header-left">
+            <img src="https://picsum.photos/50/50" alt="Author" class="mini-avatar">
+            <div class="post-author">
+              <strong>Yiro Mendez <i class="fas fa-check-circle text-muted"></i></strong>
+              <span class="text-muted">Exchange student in Msc Marketing at EDHEC...</span>
+              <span class="text-muted">2 dia • <i class="fas fa-globe-americas"></i></span>
+            </div>
+          </div>
+          <div class="post-header-right">
+            <button class="follow-btn"><i class="fas fa-plus"></i> Seguir</button>
           </div>
         </div>
         <div class="post-body">
-          <p>A veces en las operaciones estamos tan enfocados en “hacer algo” que olvidamos preguntarnos si realmente está resolviendo el problema.</p>
+          <p>♻️ INNOVACIÓN SOSTENIBLE: <strong>#Ro_boat</strong>, un robot autónomo que limpia y monitoriza basura en ríos.<br>... <span class="text-muted">ver más</span></p>
           <img src="https://picsum.photos/600/400" alt="Post Image">
         </div>
       </div>
     </section>
 
-    <aside class="sidebar-news">
-      <div class="card news-card">
-        <h4>LinkedIn Noticias</h4>
-        <ul>
-          <li><strong>¿Qué es el Triple Bottom Line?</strong> <span>Hace 2 h • 1,240 lectores</span></li>
-          <li><strong>Tendencias en HTML5</strong> <span>Hace 5 h • 850 lectores</span></li>
-          <li><strong>SENA: Innovación técnica</strong> <span>Hace 1 d • 2,100 lectores</span></li>
-        </ul>
+    
+<aside class="sidebar-news">
+      
+      <div class="card games-card">
+        <div class="games-header">
+          <h2>Games of today</h2>
+        </div>
+        <div class="game-item">
+          <img src="https://picsum.photos/60/60" alt="Game Logo" class="game-logo">
+          <div class="game-info">
+            <strong>Zip: A puzzle game... al coco</strong>
+            <span class="text-muted">¡Resuelvélo en 60 segundos o menos!</span>
+            <button class="btn-primary-sm">Play</button>
+          </div>
+        </div>
       </div>
+
+      
+      <div class="card feed-add-card">
+        <div class="feed-add-header">
+          <h2>Añadir a tu feed</h2>
+        </div>
+        <ul class="feed-add-list">
+          <li>
+            <img src="https://picsum.photos/50/50" alt="Recommendation Icon" class="mini-avatar">
+            <div class="recommend-info">
+              <strong>DIAN Dirección de Impuestes</strong>
+              <span class="text-muted">Empresa • Administración pública</span>
+              <button class="btn-secondary-sm"><i class="fas fa-plus"></i> Seguir</button>
+            </div>
+          </li>
+          <li>
+            <img src="https://picsum.photos/50/50" alt="Recommendation Icon" class="mini-avatar">
+            <div class="recommend-info">
+              <strong>Nu Colombia</strong>
+              <span class="text-muted">Empresa • Secianos Financieros</span>
+              <button class="btn-secondary-sm"><i class="fas fa-plus"></i> Seguir</button>
+            </div>
+          </li>
+          <li>
+            <img src="https://picsum.photos/50/50" alt="Recommendation Icon" class="mini-avatar">
+            <div class="recommend-info">
+              <strong>Banco de la República - ...</strong>
+              <span class="text-muted">Empresa • Banco</span>
+              <button class="btn-secondary-sm"><i class="fas fa-plus"></i> Seguir</button>
+            </div>
+          </li>
+          <li>
+            <img src="https://picsum.photos/50/50" alt="Recommendation Icon" class="mini-avatar">
+            <div class="recommend-info">
+              <strong>LinkedIn</strong>
+              <span class="text-muted">Empresa • Follou</span>
+              <button class="btn-secondary-sm"><i class="fas fa-plus"></i> Seguir</button>
+            </div>
+          </li>
+        </ul>
+        <a href="#" class="view-all-link">Ver todas las recomendaciones <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      
+      <div class="card ad-card">
+        <div class="ad-header">
+            <span class="ad-label">LinkedIn</span>
+        </div>
+        <div class="ad-content">
+          <p>Your job search <span class="text-muted">powered by your network</span></p>
+          <img src="https://picsum.photos/300/150" alt="Ad Image" class="ad-image">
+          <button class="btn-primary">Exconnos</button>
+        </div>
+      </div>
+
+      
+      
+
+      
+      <footer class="sidebar-footer">
+        <ul class="footer-links">
+          <li>Acerca de</li>
+          <li>Accesibilidad</li>
+          <li>Centro de ayuda</li>
+          <li>Privacidad y conditionas <i class="fas fa-caret-down"></i></li>
+          <li>Opciones de publicidad</li>
+          <li>Publicidad</li>
+          <li>Services empresariales <i class="fas fa-caret-down"></i></li>
+          <li>Descargar la aplicación de Linkedn</li>
+          <li>Más</li>
+        </ul>
+        <div class="footer-copyright">
+          <i class="fab fa-linkedin logo-icon-sm"></i> Linkedn Corporation © 2026
+        </div>
+      </footer>
     </aside>
 
   </main>
+
+  
+<div class="floating-chat">
+    <div class="chat-header">
+      <div class="chat-info">
+        <img src="carota.jpeg" alt="Yo" class="chat-avatar">
+        <strong>Mensajes</strong>
+      </div>
+      <div class="chat-controls">
+        <i class="fas fa-ellipsis-h"></i>
+        <i class="fas fa-edit"></i>
+        <i class="fas fa-chevron-up"></i>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
