@@ -17,42 +17,56 @@
   box-sizing: border-box;
 }
 
+/* ==========================================================================
+   1. DISEÑO BASE: MÓVIL (MOBILE FIRST)
+   Todo el código fuera de los @media es para pantallas pequeñas (Celulares)
+   ========================================================================== */
+
 body {
   background-color: var(--bg-color);
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text-main);
   font-size: clamp(0.875rem, 0.25vw + 0.8rem, 1rem);
   line-height: 1.5;
-  overflow-y: scroll; /* Evita saltos cuando aparece la barra de scroll */
+  overflow-y: scroll;
+  /* IMPORTANTE: Damos un margen abajo para que el menú fijo no tape el feed */
+  padding-bottom: 4rem; 
 }
 
 /* UTILIDADES */
 .text-muted { color: var(--text-muted); font-size: 0.75rem; }
 .text-bold { font-weight: 600; }
 
-/* ENCABEZADO */
+/* --- ENCABEZADO (Vista Celular) --- */
 .main-header {
   background: var(--card-white);
   height: 3.25rem;
   border-bottom: 1px solid var(--border-gray);
-  display: flex;
-  justify-content: center;
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .header-container {
   width: 100%;
-  max-width: 70.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header-left { display: flex; align-items: center; gap: 0.5rem; }
-.logo-icon { font-size: 2.2rem; color: var(--linkedin-blue); }
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1; /* Permite que el buscador se expanda */
+}
+
+.logo-icon { 
+  display: none; /* Ocultamos el logo azul grande en celular */
+} 
 
 .search-box {
   background: #edf3f8;
@@ -61,10 +75,27 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-grow: 1; /* El buscador ocupa todo el ancho disponible */
 }
-.search-box input { background: transparent; border: none; outline: none; width: clamp(5rem, 15vw, 15rem); }
+.search-box input { background: transparent; border: none; outline: none; width: 100%; }
 
-.main-nav { display: flex; gap: 1.5rem; height: 100%; align-items: center;}
+.header-right { display: none; } /* Ocultamos Try Premium en móvil */
+
+/* --- NAVEGACIÓN (Fija abajo simulando la App Nativa) --- */
+.main-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5rem;
+  background: var(--card-white);
+  border-top: 1px solid var(--border-gray);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
 .nav-item {
   display: flex;
   flex-direction: column;
@@ -72,20 +103,19 @@ body {
   justify-content: center;
   color: var(--text-muted);
   cursor: pointer;
-  min-width: 4rem;
-  font-size: 0.75rem;
-  border-bottom: 2px solid transparent;
-  position: relative; /* Para las notificaciones */
+  position: relative;
+  width: 100%;
 }
-.nav-item i { font-size: 1.2rem; margin-bottom: 0.2rem; }
-.nav-item.active { color: var(--text-main); border-bottom: 2px solid var(--text-main); }
+.nav-item i { font-size: 1.2rem; }
+.nav-item.active { color: var(--text-main); }
+.nav-text { display: none; } /* Ocultamos textos para que quepan los íconos */
 .nav-avatar-mini { width: 1.5rem; height: 1.5rem; border-radius: 50%; object-fit: cover; }
 
-/* Notificaciones con números */
+/* Centramos la burbuja de notificación para el diseño móvil */
 .notification-badge {
     position: absolute;
-    top: -0.2rem;
-    right: 0.5rem;
+    top: -0.3rem;
+    right: calc(50% - 1rem); 
     background-color: #d11124;
     color: white;
     font-size: 0.6rem;
@@ -98,56 +128,62 @@ body {
     justify-content: center;
 }
 
-.header-right { display: flex; align-items: center; gap: 1rem; }
-.premium-link { font-size: 0.75rem; color: #a07409; text-decoration: underline; font-weight: 600;}
-.premium-link:hover { color: #8a6307;}
-.for-business { min-width: auto; padding: 0 0.5rem; border-left: 1px solid var(--border-gray);}
+/* --- GRID Y ESTRUCTURA (Vista Celular - 1 Columna) --- */
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 0;
+}
 
-/* TARJETAS (CARDS) GENERALES */
+.sidebar-profile { display: none; } /* Ocultamos lado izquierdo */
+.sidebar-news { display: none; } /* Ocultamos lado derecho */
+.floating-chat { display: none; } /* Ocultamos chat flotante */
+
+/* --- TARJETAS (Vista Celular) --- */
 .card {
   background: var(--card-white);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-gray);
-  margin-bottom: 1rem; /* Aumentado para mayor separación */
+  border-radius: 0; /* Tarjetas cuadradas que tocan los bordes de la pantalla */
+  border: none;
+  border-top: 1px solid var(--border-gray);
+  border-bottom: 1px solid var(--border-gray);
+  margin-bottom: 0.5rem;
   overflow: hidden;
   position: relative;
 }
 
-/* --- COLUMNA IZQUIERDA (Separada) --- */
+/* ==========================================================================
+   ESTILOS INTERNOS DE COMPONENTES (Aplican para todas las vistas)
+   ========================================================================== */
+
+/* Perfil (Solo visible en Tablet/Desktop) */
 .profile-card-top { position: relative; }
 .banner { height: 3.5rem; background: #a0b4b7; }
 .profile-image { position: relative; width: 4.5rem; height: 4.5rem; margin: -2.25rem auto 0.5rem; }
 .profile-image img { width: 100%; height: 100%; border-radius: 50%; border: 2px solid white; object-fit: cover; }
 .add-icon { position: absolute; bottom: 0; right: 0; background: var(--linkedin-blue); color: white; border-radius: 50%; width: 1.5rem; height: 1.5rem; display: flex; align-items: center; justify-content: center; border: 2px solid white; font-size: 0.8rem; cursor: pointer; }
-
 .profile-info { text-align: center; padding: 0.5rem 1rem 1rem; border-bottom: 1px solid var(--border-gray); }
 .profile-info h3 { font-size: 1rem; }
 .profile-info p { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
 .location-text { font-size: 0.7rem !important; margin-top: 0.5rem !important; }
-
 .felo-section { padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--text-main); border-top: 1px solid var(--border-gray);}
 .felo-logo { width: 1.5rem; height: 1.5rem; object-fit: cover;}
-
-.profile-card-premium, .profile-card-connections { }
 .stat-item { padding: 0.8rem 1rem; cursor: pointer; display: flex; flex-direction: column; gap: 0.2rem; }
 .stat-item:hover { background: var(--hover-bg); }
 .connections { flex-direction: row; justify-content: space-between; align-items: center; }
 .conn-text { display: flex; flex-direction: column; }
 .stat-number { color: var(--linkedin-blue); font-weight: bold; font-size: 0.85rem; }
 .stat-link { font-weight: bold; font-size: 0.75rem; color: var(--text-main); }
-
 .profile-card-links { padding: 0.5rem 0; }
 .link-item { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
 .link-item:hover { background: var(--hover-bg); }
 
-/* --- COLUMNA CENTRAL (Feed) --- */
-/* Tarjeta Sugerida (incluye hiring) */
+/* Feed (Sugerencias, Crear Post y Publicaciones) */
 .suggested-card { padding: 1.5rem; position: relative; }
 .suggested-header { display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-gray); padding-bottom: 1rem;}
 .post-author { display: flex; flex-direction: column; line-height: 1.2; }
-
 .close-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; font-size: 1.2rem; color: var(--text-muted); cursor: pointer; }
-.hiring-circle { width: 5rem; height: 5rem; border-radius: 50%; border: 4px solid #a333c8; border-right-color: transparent; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: white; background: linear-gradient(#a333c8, #a333c8); /* Simulación rápida */ margin: 0 auto 1rem; }
+.hiring-circle { width: 5rem; height: 5rem; border-radius: 50%; border: 4px solid #a333c8; border-right-color: transparent; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: white; background: linear-gradient(#a333c8, #a333c8); margin: 0 auto 1rem; }
 .hiring-content { text-align: center;}
 .hiring-content h2 { font-size: 1.2rem; margin-bottom: 0.5rem;}
 .hiring-content p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
@@ -157,7 +193,6 @@ body {
 .btn-secondary { background: white; color: var(--text-muted); border: 1px solid var(--text-muted); padding: 0.4rem 1rem; border-radius: 1rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
 .btn-secondary:hover { background: var(--hover-bg);}
 
-/* Crear Post */
 .create-post { padding: 1rem; }
 .input-row { display: flex; gap: 0.8rem; margin-bottom: 0.8rem; }
 .mini-avatar { width: 3rem; height: 3rem; border-radius: 50%; flex-shrink: 0; object-fit: cover; }
@@ -165,20 +200,17 @@ body {
 .post-button:hover { background: var(--hover-bg); }
 .post-actions { display: flex; justify-content: space-around; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
 .post-actions span { cursor: pointer; padding: 0.5rem; border-radius: 0.3rem; display: flex; align-items: center; gap: 0.5rem; }
-.post-actions span:hover { background: var(--hover-bg); }
 
 .feed-sort { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
 .feed-sort hr { flex-grow: 1; border: none; border-top: 1px solid var(--border-gray); }
 
-/* Post en el feed */
 .post-header { display: flex; justify-content: space-between; padding: 1rem; }
 .post-header-left { display: flex; gap: 0.5rem; }
 .follow-btn { background: none; border: none; color: var(--linkedin-blue); font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 0.3rem; }
 .post-body p { padding: 0 1rem 1rem; font-size: 0.9rem; }
 .post-body img { width: 100%; height: auto; display: block; }
 
-/* --- COLUMNA DERECHA --- */
-/* Juegos */
+/* Noticias, Juegos y Anuncios (Solo visible en Desktop) */
 .games-card { padding: 1rem; }
 .games-header { margin-bottom: 1rem; }
 .games-header h2 { font-size: 1rem; }
@@ -188,9 +220,7 @@ body {
 .game-info strong { font-size: 0.85rem; color: var(--text-main);}
 .game-info span { font-size: 0.7rem; color: var(--text-muted);}
 .btn-primary-sm { background: var(--linkedin-blue); color: white; border: none; padding: 0.3rem 1rem; border-radius: 1rem; font-size: 0.75rem; font-weight: bold; cursor: pointer; align-self: flex-start;}
-.btn-primary-sm:hover { background: #0856a3;}
 
-/* Añadir al feed */
 .feed-add-card { padding: 1rem; }
 .feed-add-header { margin-bottom: 1rem; }
 .feed-add-header h2 { font-size: 1rem; }
@@ -201,11 +231,8 @@ body {
 .recommend-info strong { font-size: 0.85rem; color: var(--text-main);}
 .recommend-info span { font-size: 0.75rem; color: var(--text-muted);}
 .btn-secondary-sm { background: white; color: var(--text-muted); border: 1px solid var(--text-muted); padding: 0.3rem 1rem; border-radius: 1rem; font-size: 0.75rem; font-weight: bold; cursor: pointer; align-self: flex-start; transition: 0.2s;}
-.btn-secondary-sm:hover { background: var(--hover-bg);}
 .view-all-link { display: block; margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); text-decoration: none; font-weight: bold;}
-.view-all-link:hover { color: var(--linkedin-blue);}
 
-/* Anuncio */
 .ad-card { padding: 1rem; }
 .ad-header { text-align: right;}
 .ad-label { font-size: 0.7rem; color: var(--text-muted); font-weight: bold;}
@@ -214,7 +241,6 @@ body {
 .ad-image { width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;}
 .ad-content .btn-primary { width: 100%;}
 
-/* Noticias existentes */
 .news-card { padding: 1rem; }
 .news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 .news-header h2 { font-size: 1rem; }
@@ -224,87 +250,95 @@ body {
 .news-text { display: flex; flex-direction: column; }
 .news-text strong { font-size: 0.85rem; color: var(--text-main); }
 .news-text span { font-size: 0.75rem; color: var(--text-muted); }
-.news-list li:hover strong { color: var(--linkedin-blue); text-decoration: underline; }
 
-/* Pie de página */
 .sidebar-footer { padding: 1rem; border-top: 1px solid var(--border-gray);}
 .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-bottom: 1rem;}
 .footer-links li { font-size: 0.7rem; color: var(--text-muted); cursor: pointer;}
-.footer-links li:hover { color: var(--linkedin-blue); text-decoration: underline;}
 .footer-copyright { font-size: 0.7rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;}
 .logo-icon-sm { color: var(--linkedin-blue); font-size: 0.9rem;}
 
-/* --- CHAT FLOTANTE --- */
-.floating-chat {
-  position: fixed;
-  bottom: 0;
-  right: 2rem;
-  width: 18rem;
-  background: var(--card-white);
-  border: 1px solid var(--border-gray);
-  border-bottom: none;
-  border-radius: 0.5rem 0.5rem 0 0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  z-index: 2000;
-  cursor: pointer;
-}
-.chat-header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.8rem; }
-.chat-info { display: flex; align-items: center; gap: 0.5rem; }
-.chat-avatar { width: 2rem; height: 2rem; border-radius: 50%; object-fit: cover; }
-.chat-controls { display: flex; gap: 0.8rem; color: var(--text-muted); }
 
-/* =========================================
-   INICIO DE RESPONSIVE DESIGN
-   ========================================= */
+/* ==========================================================================
+   2. DISEÑO TABLET (min-width: 768px)
+   Aquí indicamos qué cambiar cuando la pantalla se agranda.
+   ========================================================================== */
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0; /* Ya no necesitamos el espacio abajo en tablet/PC */
+  }
 
-/* 1. ESCRITORIO (Diseño Base / Desktop First)
-  Por defecto, definimos el Grid con 3 columnas, idéntico a la imagen.
-*/
-.grid-container {
-  max-width: 70.5rem;
-  margin: 1.5rem auto;
-  padding: 0 1rem;
-  display: grid;
-  gap: 1.5rem;
-  grid-template-areas: "perfil feed news";
-  grid-template-columns: 14rem minmax(0, 1fr) 18.75rem; /* Ancho idéntico */
-  align-items: start;
-}
+  /* El Header vuelve a ser una barra superior completa */
+  .main-header { justify-content: center; padding: 0 1rem; }
+  .header-container { max-width: 70.5rem; }
+  .header-left { flex-grow: 0; }
+  .logo-icon { display: block; font-size: 2.2rem; color: var(--linkedin-blue); }
+  .search-box { flex-grow: 0; }
+  .search-box input { width: clamp(5rem, 15vw, 15rem); }
 
-.sidebar-profile { grid-area: perfil; }
-.main-feed       { grid-area: feed; }
-.sidebar-news    { grid-area: news; }
+  /* La navegación sale de abajo y vuelve arriba */
+  .main-nav {
+    position: relative;
+    bottom: auto;
+    width: auto;
+    height: 100%;
+    border-top: none;
+    gap: 1.5rem;
+  }
+  .nav-item { min-width: 4rem; border-bottom: 2px solid transparent; width: auto; }
+  .nav-item i { margin-bottom: 0.2rem; }
+  .nav-item.active { border-bottom: 2px solid var(--text-main); }
+  .nav-text { display: block; font-size: 0.75rem;}
+  .notification-badge { right: 0.5rem; } /* Ajustamos la burbuja */
 
-/* 2. TABLETS Y PORTÁTILES PEQUEÑOS
-  @media (max-width: 64rem): Oculta la columna derecha y deja 2 columnas.
-*/
-@media (max-width: 64rem) {
+  .header-right { display: flex; align-items: center; gap: 1rem; }
+  .premium-link { font-size: 0.75rem; color: #a07409; text-decoration: underline; font-weight: 600;}
+  .for-business { min-width: auto; padding: 0 0.5rem; border-left: 1px solid var(--border-gray);}
+
+  /* Grid pasa a 2 Columnas */
   .grid-container {
+    display: grid;
     grid-template-areas: "perfil feed";
     grid-template-columns: 14rem 1fr;
+    max-width: 70.5rem;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+    gap: 1.5rem;
+    align-items: start;
   }
-  .sidebar-news { display: none; }
+
+  .sidebar-profile { display: block; grid-area: perfil; } /* Aparece el perfil */
+  .main-feed { grid-area: feed; }
+
+  /* Las tarjetas recuperan sus bordes redondeados y márgenes */
+  .card {
+    border-radius: var(--radius);
+    border: 1px solid var(--border-gray);
+    margin-bottom: 1rem;
+  }
 }
 
-/* 3. MÓVILES
-  @media (max-width: 48rem): Reordena a 1 columna. El feed arriba, luego el perfil.
-*/
-@media (max-width: 48rem) {
+/* ==========================================================================
+   3. DISEÑO ESCRITORIO (min-width: 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  /* Grid pasa a 3 Columnas */
   .grid-container {
-    grid-template-areas: "feed"; /* Solo feed, perfil se oculta */
-    grid-template-columns: 1fr;
-    padding: 0;
-    margin-top: 0;
+    grid-template-areas: "perfil feed news";
+    grid-template-columns: 14rem minmax(0, 1fr) 18.75rem;
   }
-  .sidebar-profile { display: none; } /* Ocultamos el perfil lateral en móvil */
 
-  .card { border-radius: 0; border-left: none; border-right: none; } /* Tarjetas a pantalla completa */
+  .sidebar-news { display: block; grid-area: news; } /* Aparecen las noticias */
   
-  .nav-text { display: none; } /* Solo iconos en el menú */
-  .main-nav { gap: 0.5rem; }
-  .header-container { justify-content: space-around;}
-  .for-business { display: none;} /* Ocultamos "Para negocios" */
-  .premium-link { font-size: 0.65rem;}
-
-  .floating-chat { display: none; } /* Ocultamos el chat flotante en móvil */
+  /* El chat flotante solo tiene sentido en escritorio */
+  .floating-chat {
+    display: block;
+    position: fixed; bottom: 0; right: 2rem; width: 18rem;
+    background: var(--card-white); border: 1px solid var(--border-gray);
+    border-bottom: none; border-radius: 0.5rem 0.5rem 0 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 2000; cursor: pointer;
+  }
+  .chat-header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.8rem; }
+  .chat-info { display: flex; align-items: center; gap: 0.5rem; }
+  .chat-avatar { width: 2rem; height: 2rem; border-radius: 50%; object-fit: cover; }
+  .chat-controls { display: flex; gap: 0.8rem; color: var(--text-muted); }
 }
